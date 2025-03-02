@@ -1,0 +1,3909 @@
+<!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ניווט בחנות אושר עד</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        
+
+        body {
+
+            background-color: #f8f9fa;
+
+            color: #333;
+
+            direction: rtl;
+
+        }
+
+        
+
+        header {
+
+            background: linear-gradient(135deg, #1e5799 0%, #207cca 50%, #2989d8 100%);
+
+            color: white;
+
+            padding: 1rem;
+
+            text-align: center;
+
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+            position: relative;
+
+        }
+
+        
+
+        .logo-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin-bottom: 0.5rem;
+
+        }
+
+        
+
+        .logo {
+
+            width: 240px;
+
+            height: 80px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #fff;
+
+            border-radius: 10px;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .logo-text {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #1e5799;
+
+            position: relative;
+
+            z-index: 2;
+
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+
+        }
+
+        
+
+        .logo-circle {
+
+            position: absolute;
+
+            width: 60px;
+
+            height: 60px;
+
+            border-radius: 50%;
+
+            background: #ffcc00;
+
+            top: 50%;
+
+            left: 40px;
+
+            transform: translateY(-50%);
+
+            z-index: 1;
+
+        }
+
+        
+
+        .container {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding: 1rem;
+
+        }
+
+        
+
+        .card {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 1.5rem;
+
+            margin-bottom: 1.5rem;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+
+            transition: transform 0.3s, box-shadow 0.3s;
+
+            border: 1px solid rgba(0,0,0,0.05);
+
+        }
+
+        
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+
+        }
+
+        
+
+        .shopping-list {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 1.5rem;
+
+            margin-bottom: 1.5rem;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+
+        }
+
+        
+
+        .card-header {
+
+            margin-bottom: 1.5rem;
+
+            padding-bottom: 0.5rem;
+
+            border-bottom: 2px solid #1e5799;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        
+
+        .card-header h2 {
+
+            color: #1e5799;
+
+            font-size: 1.5rem;
+
+            margin: 0;
+
+        }
+
+        
+
+        .card-icon {
+
+            color: #1e5799;
+
+            font-size: 1.2rem;
+
+            background: rgba(30, 87, 153, 0.1);
+
+            width: 40px;
+
+            height: 40px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 50%;
+
+        }
+
+        
+
+        .list-items {
+
+            list-style: none;
+
+            max-height: 300px;
+
+            overflow-y: auto;
+
+            padding-right: 0.5rem;
+
+        }
+
+        
+
+        .list-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 0.75rem 0.5rem;
+
+            border-bottom: 1px solid #eee;
+
+            transition: background-color 0.2s;
+
+            border-radius: 5px;
+
+        }
+
+        
+
+        .list-item:hover {
+
+            background-color: #f8f9fa;
+
+        }
+
+        
+
+        .list-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+        
+
+        .list-item.found {
+
+            color: #999;
+
+            text-decoration: line-through;
+
+            background-color: rgba(40, 167, 69, 0.1);
+
+        }
+
+        
+
+        .list-item .product-info {
+
+            display: flex;
+
+            align-items: center;
+
+            flex: 1;
+
+        }
+
+        
+
+        .product-category {
+
+            color: #6c757d;
+
+            font-size: 0.85rem;
+
+            margin-right: 0.5rem;
+
+        }
+
+        
+
+        .list-item button {
+
+            background: #1e5799;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 5px;
+
+            padding: 0.4rem 0.7rem;
+
+            cursor: pointer;
+
+            transition: background 0.2s;
+
+            margin-right: 0.5rem;
+
+            font-size: 0.9rem;
+
+        }
+
+        
+
+        .list-item button:hover {
+
+            background: #164276;
+
+        }
+
+        
+
+        .list-item button.remove-btn {
+
+            background: #dc3545;
+
+        }
+
+        
+
+        .list-item button.remove-btn:hover {
+
+            background: #bd2130;
+
+        }
+
+        
+
+        .store-map {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 1.5rem;
+
+            margin-bottom: 1.5rem;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+
+        }
+
+        
+
+        .map-container {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 500px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            background-color: #f5f5f5;
+
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+
+            overflow: visible;
+
+            perspective: 1000px;
+
+        }
+
+        
+
+        .shelf {
+
+            position: absolute;
+
+            background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+
+            border: 1px solid #ccc;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 0.9rem;
+
+            color: #333;
+
+            font-weight: bold;
+
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+
+            transition: transform 0.3s, box-shadow 0.3s;
+
+            border-radius: 2px;
+
+            z-index: 5;
+
+            transform-style: preserve-3d;
+
+            transform: translateZ(5px);
+
+        }
+
+        
+
+        .shelf:hover {
+
+            transform: translateY(-3px) translateZ(15px);
+
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+
+            z-index: 6;
+
+        }
+
+        
+
+        .shelf-barrier {
+
+            position: absolute;
+
+            background: rgba(220, 53, 69, 0.3); /* קו חסום אדום חצי שקוף */
+
+            height: 2px;
+
+            width: 600px; /* רוחב כולל של המפה */
+
+            z-index: 4;
+
+        }
+
+        
+
+        .checkout {
+
+            position: absolute;
+
+            width: 80px;
+
+            height: 50px;
+
+            background: #fff;
+
+            border: 3px solid #1e5799;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1rem;
+
+            color: #1e5799;
+
+            font-weight: bold;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+            z-index: 5;
+
+            background: linear-gradient(to bottom, #e9ecef, #dee2e6);
+
+        }
+
+        
+
+        .user-position {
+
+            position: absolute;
+
+            width: 24px;
+
+            height: 24px;
+
+            z-index: 100;
+
+            transition: left 1s, top 1s;
+
+        }
+
+        
+
+        .user-dot {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 9px;
+
+            width: 16px;
+
+            height: 16px;
+
+            background: red;
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 10px rgba(255,0,0,0.5), 0 0 20px rgba(255,0,0,0.3);
+
+            animation: pulse 1.5s infinite;
+
+        }
+
+        
+
+        .user-flag {
+
+            position: absolute;
+
+            bottom: 12px;
+
+            right: 2px;
+
+            width: 0;
+
+            height: 0;
+
+            border-left: 10px solid red;
+
+            border-top: 10px solid transparent;
+
+            border-bottom: 10px solid transparent;
+
+            transform-origin: 0 50%;
+
+            animation: flagWave 2s infinite;
+
+        }
+
+        
+
+        .user-shaft {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 12px;
+
+            width: 2px;
+
+            height: 30px;
+
+            background: #333;
+
+        }
+
+        
+
+        @keyframes flagWave {
+
+            0%, 100% { transform: rotate(0deg); }
+
+            50% { transform: rotate(5deg); }
+
+        }
+
+        
+
+        @keyframes pulse {
+
+            0% { transform: scale(1); }
+
+            50% { transform: scale(1.2); }
+
+            100% { transform: scale(1); }
+
+        }
+
+        
+
+        .target-position {
+
+            position: absolute;
+
+            width: 24px;
+
+            height: 24px;
+
+            z-index: 20;
+
+        }
+
+        
+
+        .target-dot {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 9px;
+
+            width: 16px;
+
+            height: 16px;
+
+            background: green;
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 10px rgba(0,255,0,0.5), 0 0 20px rgba(0,255,0,0.3);
+
+            animation: targetPulse 1.5s infinite;
+
+        }
+
+        
+
+        .target-shaft {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 12px;
+
+            width: 2px;
+
+            height: 30px;
+
+            background: green;
+
+        }
+
+        
+
+        .target-flag {
+
+            position: absolute;
+
+            bottom: 12px;
+
+            right: 2px;
+
+            width: 0;
+
+            height: 0;
+
+            border-left: 10px solid green;
+
+            border-top: 10px solid transparent;
+
+            border-bottom: 10px solid transparent;
+
+        }
+
+        
+
+        @keyframes targetPulse {
+
+            0% { transform: scale(1); }
+
+            50% { transform: scale(1.2); }
+
+            100% { transform: scale(1); }
+
+        }
+
+        
+
+        .path {
+
+            position: absolute;
+
+            z-index: 4;
+
+            box-shadow: 0 0 5px rgba(30, 87, 153, 0.2);
+
+            transition: all 0.5s;
+
+            background: rgba(30, 87, 153, 0.7); /* צבע כחול עבור כל הנתיבים */
+
+        }
+
+        
+
+        .complete-path {
+
+            position: absolute;
+
+            background: rgba(150, 190, 230, 0.4);
+
+            z-index: 3;
+
+            box-shadow: 0 0 3px rgba(150, 190, 230, 0.3);
+
+        }
+
+        
+
+        .product-search {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 1.5rem;
+
+            margin-bottom: 1.5rem;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+
+        }
+
+        
+
+        .search-form {
+
+            display: flex;
+
+            margin-bottom: 1rem;
+
+        }
+
+        
+
+        .search-form input {
+
+            flex: 1;
+
+            padding: 0.75rem 1rem;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px 0 0 8px;
+
+            font-size: 1rem;
+
+            transition: border-color 0.2s, box-shadow 0.2s;
+
+        }
+
+        
+
+        .search-form input:focus {
+
+            outline: none;
+
+            border-color: #1e5799;
+
+            box-shadow: 0 0 0 3px rgba(30, 87, 153, 0.2);
+
+        }
+
+        
+
+        .search-form button {
+
+            background: #1e5799;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 0 8px 8px 0;
+
+            padding: 0.75rem 1.5rem;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+
+            transition: background 0.2s;
+
+        }
+
+        
+
+        .search-form button:hover {
+
+            background: #164276;
+
+        }
+
+        
+
+        .product-results {
+
+            max-height: 300px;
+
+            overflow-y: auto;
+
+            border: 1px solid #eee;
+
+            border-radius: 8px;
+
+        }
+
+        
+
+        .product-item {
+
+            padding: 0.75rem 1rem;
+
+            border-bottom: 1px solid #eee;
+
+            cursor: pointer;
+
+            transition: background 0.2s;
+
+        }
+
+        
+
+        .product-item:hover {
+
+            background: #f8f9fa;
+
+        }
+
+        
+
+        .product-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+        
+
+        .navigation-controls {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 1.5rem;
+
+            flex-wrap: wrap;
+
+        }
+
+        
+
+        .btn {
+
+            background: #1e5799;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            padding: 0.75rem 1.5rem;
+
+            margin: 0 0.5rem 0.5rem 0.5rem;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+
+            transition: all 0.2s;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        
+
+        .btn:hover {
+
+            background: #164276;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+        }
+
+        
+
+        .btn.danger {
+
+            background: #dc3545;
+
+        }
+
+        
+
+        .btn.danger:hover {
+
+            background: #bd2130;
+
+        }
+
+        
+
+        @media (max-width: 768px) {
+
+            .search-form {
+
+                flex-direction: column;
+
+            }
+
+            
+
+            .search-form input, .search-form button {
+
+                width: 100%;
+
+                border-radius: 8px;
+
+            }
+
+            
+
+            .search-form button {
+
+                margin-top: 0.5rem;
+
+            }
+
+            
+
+            .map-container {
+
+                height: 350px;
+
+            }
+
+            
+
+            .navigation-controls {
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+            
+
+            .btn {
+
+                width: 100%;
+
+                margin: 0.5rem 0;
+
+            }
+
+            
+
+            .logo {
+
+                width: 200px;
+
+                height: 70px;
+
+            }
+
+            
+
+            .logo-text {
+
+                font-size: 24px;
+
+            }
+
+            
+
+            .logo-circle {
+
+                width: 50px;
+
+                height: 50px;
+
+                left: 30px;
+
+            }
+
+        }
+
+        
+
+        .shelf-3d {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+
+            transform: translateZ(0px);
+
+            border: 1px solid #ccc;
+
+            border-radius: 2px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 0.9rem;
+
+            color: #333;
+
+            font-weight: bold;
+
+        }
+
+        
+
+        .shelf-top {
+
+            position: absolute;
+
+            top: -10px;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 10px;
+
+            background: #c8c8c8;
+
+            transform: rotateX(90deg) translateZ(5px);
+
+        }
+
+        
+
+        .shelf-left {
+
+            position: absolute;
+
+            top: 0;
+
+            left: -10px;
+
+            width: 10px;
+
+            height: 100%;
+
+            background: #d8d8d8;
+
+            transform: rotateY(-90deg) translateZ(5px);
+
+        }
+
+        
+
+        .shelf-right {
+
+            position: absolute;
+
+            top: 0;
+
+            right: -10px;
+
+            width: 10px;
+
+            height: 100%;
+
+            background: #b8b8b8;
+
+            transform: rotateY(90deg) translateZ(5px);
+
+        }
+
+        
+
+        .shelf-bottom {
+
+            position: absolute;
+
+            bottom: -10px;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 10px;
+
+            background: #a8a8a8;
+
+            transform: rotateX(-90deg) translateZ(5px);
+
+        }
+
+        
+
+        .store-entrance {
+
+            position: absolute;
+
+            width: 24px;
+
+            height: 24px;
+
+            z-index: 20;
+
+        }
+
+        
+
+        .entrance-shaft {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 12px;
+
+            width: 2px;
+
+            height: 30px;
+
+            background: #333;
+
+        }
+
+        
+
+        .entrance-flag {
+
+            position: absolute;
+
+            bottom: 12px;
+
+            right: 2px;
+
+            width: 0;
+
+            height: 0;
+
+            border-left: 10px solid blue;
+
+            border-top: 10px solid transparent;
+
+            border-bottom: 10px solid transparent;
+
+            transform-origin: 0 50%;
+
+            animation: flagWave 2s infinite;
+
+        }
+
+        
+
+        .entrance-dot {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 9px;
+
+            width: 16px;
+
+            height: 16px;
+
+            background: blue;
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 10px rgba(0,0,255,0.5), 0 0 20px rgba(0,0,255,0.3);
+
+        }
+
+        
+
+        .entrance-label {
+
+            position: absolute;
+
+            left: 30px;
+
+            bottom: -40px;
+
+            background: linear-gradient(to right, #28a745, #218838);
+
+            color: white;
+
+            padding: 6px 10px;
+
+            border-radius: 4px;
+
+            font-size: 1rem;
+
+            font-weight: bold;
+
+            z-index: 10;
+
+        }
+
+        
+
+        .checkout {
+
+            position: absolute;
+
+            width: 80px;
+
+            height: 50px;
+
+            background: #fff;
+
+            border: 3px solid #1e5799;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1rem;
+
+            color: #1e5799;
+
+            font-weight: bold;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+            z-index: 5;
+
+            background: linear-gradient(to bottom, #e9ecef, #dee2e6);
+
+        }
+
+        
+
+        .categories-section {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+        
+
+        .category-badge {
+
+            padding: 0.4rem 0.8rem;
+
+            background: #f8f9fa;
+
+            border: 1px solid #ddd;
+
+            border-radius: 20px;
+
+            font-size: 0.9rem;
+
+            cursor: pointer;
+
+            transition: all 0.2s;
+
+        }
+
+        
+
+        .category-badge:hover, .category-badge.active {
+
+            background: #1e5799;
+
+            color: white;
+
+            border-color: #1e5799;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+
+        }
+
+        
+
+        .stop-point {
+
+            position: absolute;
+
+            width: 16px;
+
+            height: 16px;
+
+            background: rgba(220, 53, 69, 0.8);
+
+            border-radius: 50%;
+
+            z-index: 8;
+
+            box-shadow: 0 0 12px rgba(220, 53, 69, 0.6);
+
+            border: 2px solid white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            color: white;
+
+        }
+
+        
+
+        .progress-bar-container {
+
+            width: 100%;
+
+            height: 8px;
+
+            background: #e9ecef;
+
+            border-radius: 4px;
+
+            margin-top: 1rem;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .progress-bar {
+
+            height: 100%;
+
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+
+            width: 0;
+
+            transition: width 0.5s;
+
+        }
+
+        
+
+        .info-panel {
+
+            background: #f8f9fa;
+
+            padding: 1rem;
+
+            border-radius: 8px;
+
+            margin-top: 1rem;
+
+            font-size: 0.9rem;
+
+            border-left: 4px solid #1e5799;
+
+        }
+
+        
+
+        .list-count {
+
+            background: #1e5799;
+
+            color: white;
+
+            border-radius: 50%;
+
+            width: 24px;
+
+            height: 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 0.8rem;
+
+        }
+
+        
+
+        .promotion {
+
+            position: absolute;
+
+            background: #ffcc00;
+
+            border: 1px solid #e0a800;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #333;
+
+            font-weight: bold;
+
+            z-index: 6;
+
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+            transform: translateZ(10px) rotate(-15deg);
+
+            animation: promoFlash 3s infinite;
+
+            cursor: pointer;
+
+            width: 16px;
+
+            height: 16px;
+
+        }
+
+        
+
+        @keyframes promoFlash {
+
+            0%, 100% { opacity: 1; transform: translateZ(10px) rotate(-15deg) scale(1); }
+
+            50% { opacity: 0.8; transform: translateZ(10px) rotate(-15deg) scale(1.1); }
+
+        }
+
+        
+
+        .promotion-tooltip {
+
+            position: absolute;
+
+            background: white;
+
+            border: 1px solid #ddd;
+
+            border-radius: 5px;
+
+            padding: 8px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+
+            font-size: 12px;
+
+            max-width: 150px;
+
+            z-index: 100;
+
+            display: none;
+
+        }
+
+        
+
+        .promotion:hover .promotion-tooltip {
+
+            display: block;
+
+        }
+
+        
+
+        .full-path-container {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: 3;
+
+            pointer-events: none;
+
+        }
+
+        
+
+        .promos-on-path {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 1rem;
+
+            margin-top: 1rem;
+
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+            display: none;
+
+        }
+
+        
+
+        .promos-on-path h3 {
+
+            color: #1e5799;
+
+            margin-bottom: 0.5rem;
+
+            font-size: 1.1rem;
+
+        }
+
+        
+
+        .promo-item {
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 8px;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+        
+
+        .promo-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+        
+
+        .promo-icon {
+
+            width: 24px;
+
+            height: 24px;
+
+            background: #ffcc00;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-left: 8px;
+
+            font-weight: bold;
+
+            color: #333;
+
+        }
+
+        
+
+        .promo-details {
+
+            font-size: 0.9rem;
+
+        }
+
+        
+
+        .promo-title {
+
+            font-weight: bold;
+
+        }
+
+        
+
+        .promo-price {
+
+            color: #dc3545;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo-container">
+
+            <div class="logo">
+
+                <div class="logo-circle"></div>
+
+                <div class="logo-text">אושר עד</div>
+
+            </div>
+
+        </div>
+
+        <h2>מערכת ניווט חכמה בסופרמרקט</h2>
+
+    </header>
+
+    
+
+    <div class="container">
+
+        <div class="card shopping-list">
+
+            <div class="card-header">
+
+                <h2>רשימת קניות</h2>
+
+                <div class="list-count" id="list-count">0</div>
+
+            </div>
+
+            <ul class="list-items" id="shopping-list"></ul>
+
+            <div class="navigation-controls">
+
+                <button class="btn" id="start-navigation">נווט לפי הרשימה</button>
+
+                <button class="btn" id="add-item-btn">הוסף מוצר</button>
+
+                <button class="btn danger" id="clear-list">נקה רשימה</button>
+
+            </div>
+
+            <div class="progress-bar-container" id="progress-container" style="display: none;">
+
+                <div class="progress-bar" id="progress-bar"></div>
+
+            </div>
+
+            <div class="info-panel" id="info-panel" style="display: none;">
+
+                מנווט למוצר: <span id="current-product"></span>
+
+            </div>
+
+            <div class="promos-on-path" id="promos-on-path" style="display: none;">
+
+                <h3>מבצעים במסלול הקניות שלך:</h3>
+
+                <div id="promo-list"></div>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="card store-map">
+
+            <div class="card-header">
+
+                <h2>מפת הסופרמרקט</h2>
+
+            </div>
+
+            <div class="categories-section" id="categories-section"></div>
+
+            <div class="map-container" id="store-map">
+
+                <div class="full-path-container" id="full-path-container"></div>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="card product-search">
+
+            <div class="card-header">
+
+                <h2>חיפוש מוצרים</h2>
+
+            </div>
+
+            <div class="search-form">
+
+                <input type="text" id="search-input" placeholder="הקלד שם מוצר או קטגוריה...">
+
+                <button id="search-btn">חפש</button>
+
+            </div>
+
+            <div class="product-results" id="product-results"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        const products = [
+
+            { id: 1, name: "חלב תנובה 3%", category: "מוצרי חלב", shelf: 1, position: { x: 60, y: 30 } },
+
+            { id: 2, name: "חלב יטבתה 1%", category: "מוצרי חלב", shelf: 1, position: { x: 80, y: 30 } },
+
+            { id: 3, name: "קוטג' 5%", category: "מוצרי חלב", shelf: 1, position: { x: 100, y: 30 } },
+
+            { id: 4, name: "גבינה צהובה פרוסה 28%", category: "מוצרי חלב", shelf: 1, position: { x: 120, y: 30 } },
+
+            { id: 5, name: "גבינה לבנה 5%", category: "מוצרי חלב", shelf: 1, position: { x: 140, y: 30 } },
+
+            { id: 6, name: "יוגורט אשל", category: "מוצרי חלב", shelf: 1, position: { x: 60, y: 50 } },
+
+            { id: 7, name: "יוגורט גיל מתוק", category: "מוצרי חלב", shelf: 1, position: { x: 80, y: 50 } },
+
+            { id: 8, name: "שמנת חמוצה 15%", category: "מוצרי חלב", shelf: 1, position: { x: 100, y: 50 } },
+
+            { id: 9, name: "שמנת מתוקה", category: "מוצרי חלב", shelf: 1, position: { x: 120, y: 50 } },
+
+            { id: 10, name: "חמאה", category: "מוצרי חלב", shelf: 1, position: { x: 140, y: 50 } },
+
+            { id: 11, name: "לחם אחיד פרוס", category: "לחם ומאפים", shelf: 2, position: { x: 210, y: 30 } },
+
+            { id: 12, name: "לחם דגנים", category: "לחם ומאפים", shelf: 2, position: { x: 230, y: 30 } },
+
+            { id: 13, name: "פיתות", category: "לחם ומאפים", shelf: 2, position: { x: 250, y: 30 } },
+
+            { id: 14, name: "לחמניות המבורגר", category: "לחם ומאפים", shelf: 2, position: { x: 270, y: 30 } },
+
+            { id: 15, name: "בגט", category: "לחם ומאפים", shelf: 2, position: { x: 290, y: 30 } },
+
+            { id: 16, name: "חלה לשבת", category: "לחם ומאפים", shelf: 2, position: { x: 210, y: 50 } },
+
+            { id: 17, name: "קרואסון", category: "לחם ומאפים", shelf: 2, position: { x: 230, y: 50 } },
+
+            { id: 18, name: "עוגות בחושות", category: "לחם ומאפים", shelf: 2, position: { x: 250, y: 50 } },
+
+            { id: 19, name: "עוגיות", category: "לחם ומאפים", shelf: 2, position: { x: 270, y: 50 } },
+
+            { id: 20, name: "רוגלך", category: "לחם ומאפים", shelf: 2, position: { x: 290, y: 50 } },
+
+            { id: 21, name: "עגבניות", category: "ירקות", shelf: 3, position: { x: 360, y: 30 } },
+
+            { id: 22, name: "מלפפונים", category: "ירקות", shelf: 3, position: { x: 380, y: 30 } },
+
+            { id: 23, name: "פלפל אדום", category: "ירקות", shelf: 3, position: { x: 400, y: 30 } },
+
+            { id: 24, name: "בצל", category: "ירקות", shelf: 3, position: { x: 420, y: 30 } },
+
+            { id: 25, name: "תפוחי אדמה", category: "ירקות", shelf: 3, position: { x: 440, y: 30 } },
+
+            { id: 26, name: "גזר", category: "ירקות", shelf: 3, position: { x: 360, y: 50 } },
+
+            { id: 27, name: "כרוב לבן", category: "ירקות", shelf: 3, position: { x: 380, y: 50 } },
+
+            { id: 28, name: "חסה", category: "ירקות", shelf: 3, position: { x: 400, y: 50 } },
+
+            { id: 29, name: "זוקיני", category: "ירקות", shelf: 3, position: { x: 420, y: 50 } },
+
+            { id: 30, name: "חציל", category: "ירקות", shelf: 3, position: { x: 440, y: 50 } },
+
+            { id: 31, name: "תפוחים", category: "פירות", shelf: 4, position: { x: 510, y: 30 } },
+
+            { id: 32, name: "בננות", category: "פירות", shelf: 4, position: { x: 530, y: 30 } },
+
+            { id: 33, name: "תפוזים", category: "פירות", shelf: 4, position: { x: 550, y: 30 } },
+
+            { id: 34, name: "אבוקדו", category: "פירות", shelf: 4, position: { x: 570, y: 30 } },
+
+            { id: 35, name: "אגסים", category: "פירות", shelf: 4, position: { x: 590, y: 30 } },
+
+            { id: 36, name: "ענבים", category: "פירות", shelf: 4, position: { x: 510, y: 50 } },
+
+            { id: 37, name: "לימון", category: "פירות", shelf: 4, position: { x: 530, y: 50 } },
+
+            { id: 38, name: "מלון", category: "פירות", shelf: 4, position: { x: 550, y: 50 } },
+
+            { id: 39, name: "אבטיח", category: "פירות", shelf: 4, position: { x: 570, y: 50 } },
+
+            { id: 40, name: "אננס", category: "פירות", shelf: 4, position: { x: 590, y: 50 } },
+
+            { id: 41, name: "חזה עוף", category: "בשר ודגים", shelf: 5, position: { x: 60, y: 130 } },
+
+            { id: 42, name: "כרעי עוף", category: "בשר ודגים", shelf: 5, position: { x: 80, y: 130 } },
+
+            { id: 43, name: "בשר טחון בקר", category: "בשר ודגים", shelf: 5, position: { x: 100, y: 130 } },
+
+            { id: 44, name: "אנטריקוט", category: "בשר ודגים", shelf: 5, position: { x: 120, y: 130 } },
+
+            { id: 45, name: "כבד עוף", category: "בשר ודגים", shelf: 5, position: { x: 140, y: 130 } },
+
+            { id: 46, name: "סלמון", category: "בשר ודגים", shelf: 5, position: { x: 60, y: 150 } },
+
+            { id: 47, name: "אמנון", category: "בשר ודגים", shelf: 5, position: { x: 80, y: 150 } },
+
+            { id: 48, name: "דניס", category: "בשר ודגים", shelf: 5, position: { x: 100, y: 150 } },
+
+            { id: 49, name: "חזה הודו", category: "בשר ודגים", shelf: 5, position: { x: 120, y: 150 } },
+
+            { id: 50, name: "נקניקיות", category: "בשר ודגים", shelf: 5, position: { x: 140, y: 150 } },
+
+            { id: 51, name: "אורז לבן", category: "מזון יבש", shelf: 6, position: { x: 210, y: 130 } },
+
+            { id: 52, name: "פסטה", category: "מזון יבש", shelf: 6, position: { x: 230, y: 130 } },
+
+            { id: 53, name: "קוסקוס", category: "מזון יבש", shelf: 6, position: { x: 250, y: 130 } },
+
+            { id: 54, name: "עדשים", category: "מזון יבש", shelf: 6, position: { x: 270, y: 130 } },
+
+            { id: 55, name: "שעועית יבשה", category: "מזון יבש", shelf: 6, position: { x: 290, y: 130 } },
+
+            { id: 56, name: "קמח", category: "מזון יבש", shelf: 6, position: { x: 210, y: 150 } },
+
+            { id: 57, name: "סוכר", category: "מזון יבש", shelf: 6, position: { x: 230, y: 150 } },
+
+            { id: 58, name: "מלח", category: "מזון יבש", shelf: 6, position: { x: 250, y: 150 } },
+
+            { id: 59, name: "שמן", category: "מזון יבש", shelf: 6, position: { x: 270, y: 150 } },
+
+            { id: 60, name: "תבלינים", category: "מזון יבש", shelf: 6, position: { x: 290, y: 150 } },
+
+            { id: 61, name: "טונה", category: "שימורים", shelf: 7, position: { x: 360, y: 130 } },
+
+            { id: 62, name: "תירס", category: "שימורים", shelf: 7, position: { x: 380, y: 130 } },
+
+            { id: 63, name: "אפונה", category: "שימורים", shelf: 7, position: { x: 400, y: 130 } },
+
+            { id: 64, name: "זיתים", category: "שימורים", shelf: 7, position: { x: 420, y: 130 } },
+
+            { id: 65, name: "חומוס", category: "שימורים", shelf: 7, position: { x: 440, y: 130 } },
+
+            { id: 66, name: "מלפפונים בחומץ", category: "שימורים", shelf: 7, position: { x: 360, y: 150 } },
+
+            { id: 67, name: "רסק עגבניות", category: "שימורים", shelf: 7, position: { x: 380, y: 150 } },
+
+            { id: 68, name: "שימורי פטריות", category: "שימורים", shelf: 7, position: { x: 400, y: 150 } },
+
+            { id: 69, name: "אננס בשימורים", category: "שימורים", shelf: 7, position: { x: 420, y: 150 } },
+
+            { id: 70, name: "חמוצים", category: "שימורים", shelf: 7, position: { x: 440, y: 150 } },
+
+            { id: 71, name: "במבה", category: "חטיפים וממתקים", shelf: 8, position: { x: 510, y: 130 } },
+
+            { id: 72, name: "ביסלי", category: "חטיפים וממתקים", shelf: 8, position: { x: 530, y: 130 } },
+
+            { id: 73, name: "תפוצ'יפס", category: "חטיפים וממתקים", shelf: 8, position: { x: 550, y: 130 } },
+
+            { id: 74, name: "דוריטוס", category: "חטיפים וממתקים", shelf: 8, position: { x: 570, y: 130 } },
+
+            { id: 75, name: "פופקורן למיקרוגל", category: "חטיפים וממתקים", shelf: 8, position: { x: 590, y: 130 } },
+
+            { id: 76, name: "שוקולד פרה", category: "חטיפים וממתקים", shelf: 8, position: { x: 510, y: 150 } },
+
+            { id: 77, name: "מסטיק עלמה", category: "חטיפים וממתקים", shelf: 8, position: { x: 530, y: 150 } },
+
+            { id: 78, name: "סוכריות", category: "חטיפים וממתקים", shelf: 8, position: { x: 550, y: 150 } },
+
+            { id: 79, name: "עוגיות אוראו", category: "חטיפים וממתקים", shelf: 8, position: { x: 570, y: 150 } },
+
+            { id: 80, name: "קליק", category: "חטיפים וממתקים", shelf: 8, position: { x: 590, y: 150 } },
+
+            { id: 81, name: "קוקה קולה", category: "משקאות", shelf: 9, position: { x: 60, y: 230 } },
+
+            { id: 82, name: "פפסי", category: "משקאות", shelf: 9, position: { x: 80, y: 230 } },
+
+            { id: 83, name: "ספרייט", category: "משקאות", shelf: 9, position: { x: 100, y: 230 } },
+
+            { id: 84, name: "פנטה", category: "משקאות", shelf: 9, position: { x: 120, y: 230 } },
+
+            { id: 85, name: "מים מינרלים", category: "משקאות", shelf: 9, position: { x: 140, y: 230 } },
+
+            { id: 86, name: "מיץ תפוזים", category: "משקאות", shelf: 9, position: { x: 60, y: 250 } },
+
+            { id: 87, name: "מיץ אשכוליות", category: "משקאות", shelf: 9, position: { x: 80, y: 250 } },
+
+            { id: 88, name: "בירה", category: "משקאות", shelf: 9, position: { x: 100, y: 250 } },
+
+            { id: 89, name: "יין", category: "משקאות", shelf: 9, position: { x: 120, y: 250 } },
+
+            { id: 90, name: "סודה", category: "משקאות", shelf: 9, position: { x: 140, y: 250 } },
+
+            { id: 91, name: "סבון כלים", category: "מוצרי ניקיון", shelf: 10, position: { x: 210, y: 230 } },
+
+            { id: 92, name: "אקונומיקה", category: "מוצרי ניקיון", shelf: 10, position: { x: 230, y: 230 } },
+
+            { id: 93, name: "סנו ז'אוול", category: "מוצרי ניקיון", shelf: 10, position: { x: 250, y: 230 } },
+
+            { id: 94, name: "נוזל רצפות", category: "מוצרי ניקיון", shelf: 10, position: { x: 270, y: 230 } },
+
+            { id: 95, name: "מרכך כביסה", category: "מוצרי ניקיון", shelf: 10, position: { x: 290, y: 230 } },
+
+            { id: 96, name: "אבקת כביסה", category: "מוצרי ניקיון", shelf: 10, position: { x: 210, y: 250 } },
+
+            { id: 97, name: "מטליות", category: "מוצרי ניקיון", shelf: 10, position: { x: 230, y: 250 } },
+
+            { id: 98, name: "ספוגיות", category: "מוצרי ניקיון", shelf: 10, position: { x: 250, y: 250 } },
+
+            { id: 99, name: "נייר טואלט", category: "מוצרי ניקיון", shelf: 10, position: { x: 270, y: 250 } },
+
+            { id: 100, name: "מגבוני ניקוי", category: "מוצרי ניקיון", shelf: 10, position: { x: 290, y: 250 } },
+
+            { id: 101, name: "שמפו", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 360, y: 230 } },
+
+            { id: 102, name: "מרכך שיער", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 380, y: 230 } },
+
+            { id: 103, name: "סבון גוף", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 400, y: 230 } },
+
+            { id: 104, name: "דאודורנט", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 420, y: 230 } },
+
+            { id: 105, name: "משחת שיניים", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 440, y: 230 } },
+
+            { id: 106, name: "מברשת שיניים", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 360, y: 250 } },
+
+            { id: 107, name: "סכיני גילוח", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 380, y: 250 } },
+
+            { id: 108, name: "קרם ידיים", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 400, y: 250 } },
+
+            { id: 109, name: "צמר גפן", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 420, y: 250 } },
+
+            { id: 110, name: "קרם הגנה", category: "קוסמטיקה וטיפוח", shelf: 11, position: { x: 440, y: 250 } },
+
+            { id: 111, name: "חיתולים", category: "מוצרי תינוקות", shelf: 12, position: { x: 510, y: 230 } },
+
+            { id: 112, name: "מטרנה", category: "מוצרי תינוקות", shelf: 12, position: { x: 530, y: 230 } },
+
+            { id: 113, name: "מחיות לתינוקות", category: "מוצרי תינוקות", shelf: 12, position: { x: 550, y: 230 } },
+
+            { id: 114, name: "בקבוקים", category: "מוצרי תינוקות", shelf: 12, position: { x: 570, y: 230 } },
+
+            { id: 115, name: "מגבונים לתינוק", category: "מוצרי תינוקות", shelf: 12, position: { x: 590, y: 230 } },
+
+            { id: 116, name: "משחת החתלה", category: "מוצרי תינוקות", shelf: 12, position: { x: 510, y: 250 } },
+
+            { id: 117, name: "מוצצים", category: "מוצרי תינוקות", shelf: 12, position: { x: 530, y: 250 } },
+
+            { id: 118, name: "סבון תינוקות", category: "מוצרי תינוקות", shelf: 12, position: { x: 550, y: 250 } },
+
+            { id: 119, name: "שמפו לתינוקות", category: "מוצרי תינוקות", shelf: 12, position: { x: 570, y: 250 } },
+
+            { id: 120, name: "אמבטיה לתינוק", category: "מוצרי תינוקות", shelf: 12, position: { x: 590, y: 250 } },
+
+            { id: 121, name: "נייר טואלט", category: "נייר וחד פעמי", shelf: 13, position: { x: 60, y: 330 } },
+
+            { id: 122, name: "מגבות נייר", category: "נייר וחד פעמי", shelf: 13, position: { x: 80, y: 330 } },
+
+            { id: 123, name: "מפיות", category: "נייר וחד פעמי", shelf: 13, position: { x: 100, y: 330 } },
+
+            { id: 124, name: "כלים חד פעמיים", category: "נייר וחד פעמי", shelf: 13, position: { x: 120, y: 330 } },
+
+            { id: 125, name: "שקיות אוכל", category: "נייר וחד פעמי", shelf: 13, position: { x: 140, y: 330 } },
+
+            { id: 126, name: "ניילון נצמד", category: "נייר וחד פעמי", shelf: 13, position: { x: 60, y: 350 } },
+
+            { id: 127, name: "נייר אפייה", category: "נייר וחד פעמי", shelf: 13, position: { x: 80, y: 350 } },
+
+            { id: 128, name: "מפות חד פעמיות", category: "נייר וחד פעמי", shelf: 13, position: { x: 100, y: 350 } },
+
+            { id: 129, name: "שקיות אשפה", category: "נייר וחד פעמי", shelf: 13, position: { x: 120, y: 350 } },
+
+            { id: 130, name: "תבניות אלומיניום", category: "נייר וחד פעמי", shelf: 13, position: { x: 140, y: 350 } },
+
+        ];
+
+        
+
+        const promotions = [
+
+            { id: 1, productId: 2, title: "חלב יטבתה 1%", description: "1+1", price: "₪8.90", position: { x: 25, y: 70 } },
+
+            { id: 2, productId: 3, title: "קוטג' 5%", description: "2 ב-₪16", price: "₪8.90", position: { x: 25, y: 170 } },
+
+            { id: 3, productId: 12, title: "לחם דגנים", description: "1+1", price: "₪15.90", position: { x: 25, y: 270 } },
+
+            { id: 4, productId: 21, title: "עגבניות", description: "1 ק״ג", price: "₪5.90", position: { x: 525, y: 70 } },
+
+            { id: 5, productId: 32, title: "בננות", description: "1 ק״ג", price: "₪6.90", position: { x: 525, y: 170 } },
+
+            { id: 6, productId: 41, title: "חזה עוף", description: "קילו", price: "₪34.90", position: { x: 525, y: 270 } },
+
+            { id: 7, productId: 52, title: "פסטה", description: "3 ב-₪12", price: "₪5.90", position: { x: 25, y: 70 } },
+
+            { id: 8, productId: 63, title: "אפונה", description: "2 ב-₪10", price: "₪6.90", position: { x: 25, y: 170 } },
+
+            { id: 9, productId: 71, title: "במבה", description: "4 ב-₪20", price: "₪5.90", position: { x: 25, y: 270 } },
+
+            { id: 10, productId: 81, title: "קוקה קולה", description: "6 ב-₪32", price: "₪6.90", position: { x: 525, y: 70 } },
+
+            { id: 11, productId: 92, title: "אקונומיקה", description: "1+1", price: "₪9.90", position: { x: 525, y: 170 } },
+
+            { id: 12, productId: 101, title: "שמפו", description: "חסכון", price: "₪19.90", position: { x: 525, y: 270 } },
+
+            { id: 13, productId: 112, title: "מטרנה", description: "1+1", price: "₪79.90", position: { x: 25, y: 270 } },
+
+            { id: 14, productId: 121, title: "נייר טואלט", description: "3 חבילות", price: "₪40", position: { x: 525, y: 270 } },
+
+        ];
+
+        
+
+        const shelves = [
+
+            { id: 1, name: "מוצרי חלב", x: 50, y: 20, width: 150, height: 60 },
+
+            { id: 2, name: "לחם ומאפים", x: 200, y: 20, width: 150, height: 60 },
+
+            { id: 3, name: "ירקות", x: 350, y: 20, width: 150, height: 60 },
+
+            { id: 4, name: "פירות", x: 500, y: 20, width: 150, height: 60 },
+
+            { id: 5, name: "בשר ודגים", x: 50, y: 120, width: 150, height: 60 },
+
+            { id: 6, name: "מזון יבש", x: 200, y: 120, width: 150, height: 60 },
+
+            { id: 7, name: "שימורים", x: 350, y: 120, width: 150, height: 60 },
+
+            { id: 8, name: "חטיפים וממתקים", x: 500, y: 120, width: 150, height: 60 },
+
+            { id: 9, name: "משקאות", x: 50, y: 220, width: 150, height: 60 },
+
+            { id: 10, name: "מוצרי ניקיון", x: 200, y: 220, width: 150, height: 60 },
+
+            { id: 11, name: "קוסמטיקה וטיפוח", x: 350, y: 220, width: 150, height: 60 },
+
+            { id: 12, name: "מוצרי תינוקות", x: 500, y: 220, width: 150, height: 60 },
+
+            { id: 13, name: "נייר וחד פעמי", x: 50, y: 320, width: 150, height: 60 }
+
+        ];
+
+        
+
+        const checkouts = [
+
+            { id: 1, name: "קופה 1", x: 300, y: 420, load: 3 },
+
+            { id: 2, name: "קופה 2", x: 400, y: 420, load: 1 },
+
+            { id: 3, name: "קופה 3", x: 500, y: 420, load: 4 },
+
+            { id: 4, name: "קופה 4", x: 600, y: 420, load: 2 }
+
+        ];
+
+        
+
+        const entrancePosition = { x: 20, y: 480 };
+
+        let userPosition = { x: entrancePosition.x, y: entrancePosition.y };
+
+        let targetPosition = null;
+
+        let shoppingList = [];
+
+        let currentPaths = [];
+
+        let fullPathPoints = [];
+
+        let currentNavigationIndex = -1;
+
+        let navigationActive = false;
+
+        let stopPoints = [];
+
+        let promotionsOnPath = [];
+
+        
+
+        const passageXs = [20, 545]; // מעברים חדשים בציר X
+
+        const passageYs = [80, 180, 280]; // מעברים חדשים בציר Y
+
+        
+
+        // הגדרת צירים חסומים עבור כל שורה של מדפים (בציר Y)
+
+        const shelfBarriers = [
+
+            { y: 80, height: 2 },  // שורה 1 (y=20 + גובה 60 = 80)
+
+            { y: 180, height: 2 }, // שורה 2 (y=120 + גובה 60 = 180)
+
+            { y: 280, height: 2 }, // שורה 3 (y=220 + גובה 60 = 280)
+
+            { y: 380, height: 2 }  // שורה 4 (y=320 + גובה 60 = 380)
+
+        ];
+
+
+
+        function initializeMap() {
+
+            const mapContainer = document.getElementById('store-map');
+
+            
+
+            // כניסה
+
+            const entranceElement = document.createElement('div');
+
+            entranceElement.className = 'store-entrance';
+
+            entranceElement.style.left = `${entrancePosition.x - 12}px`;
+
+            entranceElement.style.top = `${entrancePosition.y - 30}px`;
+
+            entranceElement.innerHTML = `
+
+                <div class="entrance-shaft"></div>
+
+                <div class="entrance-flag"></div>
+
+                <div class="entrance-dot"></div>
+
+            `;
+
+            mapContainer.appendChild(entranceElement);
+
+            
+
+            const entranceLabel = document.createElement('div');
+
+            entranceLabel.className = 'entrance-label';
+
+            entranceLabel.textContent = 'כניסה';
+
+            mapContainer.appendChild(entranceLabel);
+
+            
+
+            // מדפים
+
+            shelves.forEach(shelf => {
+
+                const shelfElement = document.createElement('div');
+
+                shelfElement.className = 'shelf';
+
+                shelfElement.style.left = `${shelf.x}px`;
+
+                shelfElement.style.top = `${shelf.y}px`;
+
+                shelfElement.style.width = `${shelf.width}px`;
+
+                shelfElement.style.height = `${shelf.height}px`;
+
+                
+
+                const shelfMain = document.createElement('div');
+
+                shelfMain.className = 'shelf-3d';
+
+                shelfMain.textContent = shelf.name;
+
+                
+
+                const shelfTop = document.createElement('div');
+
+                shelfTop.className = 'shelf-top';
+
+                
+
+                const shelfLeft = document.createElement('div');
+
+                shelfLeft.className = 'shelf-left';
+
+                
+
+                const shelfRight = document.createElement('div');
+
+                shelfRight.className = 'shelf-right';
+
+                
+
+                const shelfBottom = document.createElement('div');
+
+                shelfBottom.className = 'shelf-bottom';
+
+                
+
+                shelfElement.appendChild(shelfMain);
+
+                shelfElement.appendChild(shelfTop);
+
+                shelfElement.appendChild(shelfLeft);
+
+                shelfElement.appendChild(shelfRight);
+
+                shelfElement.appendChild(shelfBottom);
+
+                
+
+                mapContainer.appendChild(shelfElement);
+
+            });
+
+            
+
+            // צירים חסומים (קווים אופקיים מעל כל שורה)
+
+            shelfBarriers.forEach(barrier => {
+
+                const barrierElement = document.createElement('div');
+
+                barrierElement.className = 'shelf-barrier';
+
+                barrierElement.style.top = `${barrier.y}px`;
+
+                barrierElement.style.left = '0';
+
+                mapContainer.appendChild(barrierElement);
+
+            });
+
+            
+
+            // קופות כבלוקים נפרדים
+
+            checkouts.forEach(checkout => {
+
+                const checkoutElement = document.createElement('div');
+
+                checkoutElement.className = 'checkout';
+
+                checkoutElement.style.left = `${checkout.x}px`;
+
+                checkoutElement.style.top = `${checkout.y}px`;
+
+                checkoutElement.textContent = checkout.name;
+
+                mapContainer.appendChild(checkoutElement);
+
+            });
+
+            
+
+            // מבצעים
+
+            promotions.forEach(promo => {
+
+                const promoElement = document.createElement('div');
+
+                promoElement.className = 'promotion';
+
+                promoElement.style.left = `${promo.position.x}px`;
+
+                promoElement.style.top = `${promo.position.y}px`;
+
+                promoElement.style.display = 'none';
+
+                promoElement.textContent = '%';
+
+                
+
+                const tooltipElement = document.createElement('div');
+
+                tooltipElement.className = 'promotion-tooltip';
+
+                tooltipElement.innerHTML = `
+
+                    <div><b>${promo.title}</b></div>
+
+                    <div>${promo.description}</div>
+
+                    <div style="color: #dc3545; font-weight: bold;">${promo.price}</div>
+
+                `;
+
+                promoElement.appendChild(tooltipElement);
+
+                
+
+                mapContainer.appendChild(promoElement);
+
+            });
+
+            
+
+            // מיקום המשתמש
+
+            const userElement = document.createElement('div');
+
+            userElement.className = 'user-position';
+
+            userElement.style.left = `${userPosition.x - 12}px`;
+
+            userElement.style.top = `${userPosition.y - 30}px`;
+
+            userElement.id = 'user-position';
+
+            userElement.innerHTML = `
+
+                <div class="user-shaft"></div>
+
+                <div class="user-flag"></div>
+
+                <div class="user-dot"></div>
+
+            `;
+
+            mapContainer.appendChild(userElement);
+
+            
+
+            // קטגוריות
+
+            const categories = [...new Set(products.map(p => p.category))];
+
+            const categoriesSection = document.getElementById('categories-section');
+
+            
+
+            categories.forEach(category => {
+
+                const categoryBadge = document.createElement('div');
+
+                categoryBadge.className = 'category-badge';
+
+                categoryBadge.textContent = category;
+
+                categoryBadge.addEventListener('click', () => {
+
+                    document.querySelectorAll('.category-badge').forEach(badge => badge.classList.remove('active'));
+
+                    categoryBadge.classList.add('active');
+
+                    const results = products.filter(p => p.category === category);
+
+                    renderSearchResults(results);
+
+                });
+
+                categoriesSection.appendChild(categoryBadge);
+
+            });
+
+        }
+
+        
+
+        function updateUserPosition(x, y) {
+
+            userPosition = { x, y };
+
+            const userElement = document.getElementById('user-position');
+
+            userElement.style.left = `${x - 12}px`;
+
+            userElement.style.top = `${y - 30}px`;
+
+        }
+
+        
+
+        function createTargetPosition(x, y) {
+
+            const existingTarget = document.getElementById('target-position');
+
+            if (existingTarget) existingTarget.remove();
+
+            
+
+            targetPosition = { x, y };
+
+            const mapContainer = document.getElementById('store-map');
+
+            const targetElement = document.createElement('div');
+
+            targetElement.className = 'target-position';
+
+            targetElement.style.left = `${x - 12}px`;
+
+            targetElement.style.top = `${y - 30}px`;
+
+            targetElement.id = 'target-position';
+
+            targetElement.innerHTML = `
+
+                <div class="target-shaft"></div>
+
+                <div class="target-flag"></div>
+
+                <div class="target-dot"></div>
+
+            `;
+
+            mapContainer.appendChild(targetElement);
+
+        }
+
+        
+
+        function clearAllPaths() {
+
+            stopPoints.forEach(stop => {
+
+                if (stop && stop.parentNode) stop.parentNode.removeChild(stop);
+
+            });
+
+            stopPoints = [];
+
+        }
+
+        
+
+        function createComplexPath(points, step) {
+
+            const mapContainer = document.getElementById('store-map');
+
+            
+
+            if (currentNavigationIndex === 0) {
+
+                fullPathPoints = [...points];
+
+            } else if (currentNavigationIndex > 0) {
+
+                fullPathPoints = fullPathPoints.concat(points.slice(1));
+
+            }
+
+            
+
+            for (let i = 0; i < points.length - 1; i++) {
+
+                const fromPoint = points[i];
+
+                const toPoint = points[i + 1];
+
+                
+
+                const pathElement = document.createElement('div');
+
+                pathElement.className = `path step-${step}`;
+
+                
+
+                // בדיקה אם הנקודות חוצות מדפים, צירים חסומים, או את ציר Y של הבלוקים
+
+                const crossesShelf = checkIfCrossesShelf(fromPoint, toPoint);
+
+                const crossesBarrier = checkIfCrossesBarrier(fromPoint, toPoint);
+
+                const crossesYRange = checkIfCrossesYRange(fromPoint, toPoint);
+
+                
+
+                if (crossesShelf || crossesBarrier || crossesYRange) {
+
+                    // יצירת נתיב זיגזג לעקיפת מדפים, צירים חסומים, וציר Y של הבלוקים
+
+                    const nearestPassageX = getNearestPassageX((fromPoint.x + toPoint.x) / 2);
+
+                    const nearestPassageY = getNearestPassageY((fromPoint.y + toPoint.y) / 2);
+
+                    
+
+                    // תנועה תמיד דרך passageXs (25, 525) בציר X, ועקיפה אנכית דרך passageYs (70, 170, 270) בציר Y
+
+                    pathElement.style.left = `${fromPoint.x - 2}px`;
+
+                    pathElement.style.top = `${fromPoint.y}px`;
+
+                    pathElement.style.width = `${nearestPassageX - fromPoint.x}px`;
+
+                    pathElement.style.height = `2px`;
+
+                    mapContainer.appendChild(pathElement);
+
+                    
+
+                    const pathElement2 = document.createElement('div');
+
+                    pathElement2.className = `path step-${step}`;
+
+                    pathElement2.style.left = `${nearestPassageX - 2}px`;
+
+                    pathElement2.style.top = `${fromPoint.y - 2}px`;
+
+                    pathElement2.style.width = `4px`;
+
+                    pathElement2.style.height = `${nearestPassageY - fromPoint.y}px`; // תנועה אנכית דרך passageYs
+
+                    mapContainer.appendChild(pathElement2);
+
+                    
+
+                    const pathElement3 = document.createElement('div');
+
+                    pathElement3.className = `path step-${step}`;
+
+                    pathElement3.style.left = `${nearestPassageX - 2}px`;
+
+                    pathElement3.style.top = `${nearestPassageY - 2}px`;
+
+                    pathElement3.style.width = `4px`;
+
+                    pathElement3.style.height = `${toPoint.y - nearestPassageY}px`; // תנועה אנכית נוספת דרך passageYs
+
+                    mapContainer.appendChild(pathElement3);
+
+                    
+
+                    const pathElement4 = document.createElement('div');
+
+                    pathElement4.className = `path step-${step}`;
+
+                    pathElement4.style.left = `${nearestPassageX - 2}px`;
+
+                    pathElement4.style.top = `${toPoint.y - 2}px`;
+
+                    pathElement4.style.width = `${toPoint.x - nearestPassageX}px`;
+
+                    pathElement4.style.height = `2px`;
+
+                    mapContainer.appendChild(pathElement4);
+
+                } else {
+
+                    // נתיב ישיר דרך מעברים (אך עדיין תוך שמירה על passageXs בציר X ו-passageYs בציר Y)
+
+                    if (Math.abs(toPoint.x - fromPoint.x) < 5) {
+
+                        const top = Math.min(fromPoint.y, toPoint.y);
+
+                        const height = Math.abs(toPoint.y - fromPoint.y);
+
+                        pathElement.style.left = `${fromPoint.x - 2}px`;
+
+                        pathElement.style.top = `${top}px`;
+
+                        pathElement.style.width = `4px`;
+
+                        pathElement.style.height = `${height}px`;
+
+                    } else if (Math.abs(toPoint.y - fromPoint.y) < 5) {
+
+                        const left = Math.min(fromPoint.x, toPoint.x);
+
+                        const width = Math.abs(toPoint.x - fromPoint.x);
+
+                        pathElement.style.left = `${left}px`;
+
+                        pathElement.style.top = `${fromPoint.y - 2}px`;
+
+                        pathElement.style.width = `${width}px`;
+
+                        pathElement.style.height = `4px`;
+
+                    }
+
+                    mapContainer.appendChild(pathElement);
+
+                }
+
+                
+
+                currentPaths.push(pathElement);
+
+            }
+
+            
+
+            renderFullPath();
+
+            checkPromotionsOnPath(points);
+
+        }
+
+        
+
+        function renderFullPath() {
+
+            const fullPathContainer = document.getElementById('full-path-container');
+
+            fullPathContainer.innerHTML = '';
+
+            
+
+            if (fullPathPoints.length === 0) return;
+
+            
+
+            shoppingList.forEach((product, index) => {
+
+                const stopPoint = document.createElement('div');
+
+                stopPoint.className = 'stop-point';
+
+                stopPoint.style.left = `${product.position.x - 8}px`;
+
+                stopPoint.style.top = `${product.position.y - 8}px`;
+
+                stopPoint.textContent = index + 1;
+
+                stopPoint.title = product.name;
+
+                fullPathContainer.appendChild(stopPoint);
+
+                stopPoints.push(stopPoint);
+
+            });
+
+            
+
+            for (let i = 0; i < fullPathPoints.length - 1; i++) {
+
+                const fromPoint = fullPathPoints[i];
+
+                const toPoint = fullPathPoints[i + 1];
+
+                
+
+                const pathElement = document.createElement('div');
+
+                pathElement.className = 'complete-path';
+
+                
+
+                const crossesShelf = checkIfCrossesShelf(fromPoint, toPoint);
+
+                const crossesBarrier = checkIfCrossesBarrier(fromPoint, toPoint);
+
+                const crossesYRange = checkIfCrossesYRange(fromPoint, toPoint);
+
+                
+
+                if (crossesShelf || crossesBarrier || crossesYRange) {
+
+                    // נתיב זיגזג לעקיפת מדפים, צירים חסומים, וציר Y של הבלוקים
+
+                    const nearestPassageX = getNearestPassageX((fromPoint.x + toPoint.x) / 2);
+
+                    const nearestPassageY = getNearestPassageY((fromPoint.y + toPoint.y) / 2);
+
+                    
+
+                    // תנועה תמיד דרך passageXs (25, 525) בציר X, ועקיפה אנכית דרך passageYs (70, 170, 270) בציר Y
+
+                    pathElement.style.left = `${fromPoint.x - 1}px`;
+
+                    pathElement.style.top = `${fromPoint.y - 1}px`;
+
+                    pathElement.style.width = `${nearestPassageX - fromPoint.x}px`;
+
+                    pathElement.style.height = `2px`;
+
+                    fullPathContainer.appendChild(pathElement);
+
+                    
+
+                    const pathElement2 = document.createElement('div');
+
+                    pathElement2.className = 'complete-path';
+
+                    pathElement2.style.left = `${nearestPassageX - 1}px`;
+
+                    pathElement2.style.top = `${fromPoint.y - 1}px`;
+
+                    pathElement2.style.width = `2px`;
+
+                    pathElement2.style.height = `${nearestPassageY - fromPoint.y}px`; // תנועה אנכית דרך passageYs
+
+                    fullPathContainer.appendChild(pathElement2);
+
+                    
+
+                    const pathElement3 = document.createElement('div');
+
+                    pathElement3.className = 'complete-path';
+
+                    pathElement3.style.left = `${nearestPassageX - 1}px`;
+
+                    pathElement3.style.top = `${nearestPassageY - 1}px`;
+
+                    pathElement3.style.width = `2px`;
+
+                    pathElement3.style.height = `${toPoint.y - nearestPassageY}px`; // תנועה אנכית נוספת דרך passageYs
+
+                    fullPathContainer.appendChild(pathElement3);
+
+                    
+
+                    const pathElement4 = document.createElement('div');
+
+                    pathElement4.className = 'complete-path';
+
+                    pathElement4.style.left = `${nearestPassageX - 1}px`;
+
+                    pathElement4.style.top = `${toPoint.y - 1}px`;
+
+                    pathElement4.style.width = `${toPoint.x - nearestPassageX}px`;
+
+                    pathElement4.style.height = `2px`;
+
+                    fullPathContainer.appendChild(pathElement4);
+
+                } else {
+
+                    // נתיב ישיר דרך מעברים (אך עדיין תוך שמירה על passageXs בציר X ו-passageYs בציר Y)
+
+                    if (Math.abs(toPoint.x - fromPoint.x) < 5) {
+
+                        const top = Math.min(fromPoint.y, toPoint.y);
+
+                        const height = Math.abs(toPoint.y - fromPoint.y);
+
+                        pathElement.style.left = `${fromPoint.x - 1}px`;
+
+                        pathElement.style.top = `${top}px`;
+
+                        pathElement.style.width = `2px`;
+
+                        pathElement.style.height = `${height}px`;
+
+                    } else if (Math.abs(toPoint.y - fromPoint.y) < 5) {
+
+                        const left = Math.min(fromPoint.x, toPoint.x);
+
+                        const width = Math.abs(toPoint.x - fromPoint.x);
+
+                        pathElement.style.left = `${left}px`;
+
+                        pathElement.style.top = `${fromPoint.y - 1}px`;
+
+                        pathElement.style.width = `${width}px`;
+
+                        pathElement.style.height = `2px`;
+
+                    }
+
+                    fullPathContainer.appendChild(pathElement);
+
+                }
+
+            }
+
+        }
+
+        
+
+        function checkIfCrossesShelf(fromPoint, toPoint) {
+
+            // בדיקה אם הנקודות חוצות שטח של מדף
+
+            for (const shelf of shelves) {
+
+                const shelfLeft = shelf.x;
+
+                const shelfRight = shelf.x + shelf.width;
+
+                const shelfTop = shelf.y;
+
+                const shelfBottom = shelf.y + shelf.height;
+
+                
+
+                if ((fromPoint.x >= shelfLeft && fromPoint.x <= shelfRight && toPoint.x >= shelfLeft && toPoint.x <= shelfRight) ||
+
+                    (fromPoint.y >= shelfTop && fromPoint.y <= shelfBottom && toPoint.y >= shelfTop && toPoint.y <= shelfBottom)) {
+
+                    return true;
+
+                }
+
+                
+
+                // בדיקת חצייה של שטח המדף
+
+                if ((fromPoint.x < shelfLeft && toPoint.x > shelfRight) || (fromPoint.x > shelfRight && toPoint.x < shelfLeft) ||
+
+                    (fromPoint.y < shelfTop && toPoint.y > shelfBottom) || (fromPoint.y > shelfBottom && toPoint.y < shelfTop)) {
+
+                    return true;
+
+                }
+
+            }
+
+            
+
+            // בדיקה עבור הקופות
+
+            for (const checkout of checkouts) {
+
+                const checkoutLeft = checkout.x;
+
+                const checkoutRight = checkout.x + 80; // רוחב הקופה (80px כפי שמוגדר בסגנון)
+
+                const checkoutTop = checkout.y;
+
+                const checkoutBottom = checkout.y + 50; // גובה הקופה (50px כפי שמוגדר בסגנון)
+
+                
+
+                if ((fromPoint.x >= checkoutLeft && fromPoint.x <= checkoutRight && toPoint.x >= checkoutLeft && toPoint.x <= checkoutRight) ||
+
+                    (fromPoint.y >= checkoutTop && fromPoint.y <= checkoutBottom && toPoint.y >= checkoutTop && toPoint.y <= checkoutBottom)) {
+
+                    return true;
+
+                }
+
+                
+
+                if ((fromPoint.x < checkoutLeft && toPoint.x > checkoutRight) || (fromPoint.x > checkoutRight && toPoint.x < checkoutLeft) ||
+
+                    (fromPoint.y < checkoutTop && toPoint.y > checkoutBottom) || (fromPoint.y > checkoutBottom && toPoint.y < checkoutTop)) {
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
+
+        
+
+        function checkIfCrossesBarrier(fromPoint, toPoint) {
+
+            // בדיקה אם הנקודות חוצות ציר חסום
+
+            for (const barrier of shelfBarriers) {
+
+                const barrierY = barrier.y;
+
+                const barrierHeight = barrier.height;
+
+                
+
+                if ((fromPoint.y <= barrierY && toPoint.y >= barrierY) || (fromPoint.y >= barrierY && toPoint.y <= barrierY)) {
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
+
+        
+
+        function checkIfCrossesYRange(fromPoint, toPoint) {
+
+            // בדיקה אם הנקודות חוצות את ציר Y של הבלוקים (20-380)
+
+            const shelfTop = 20;
+
+            const shelfBottom = 380;
+
+            
+
+            if ((fromPoint.y >= shelfTop && fromPoint.y <= shelfBottom && toPoint.y >= shelfTop && toPoint.y <= shelfBottom) ||
+
+                (fromPoint.y < shelfTop && toPoint.y > shelfBottom) || (fromPoint.y > shelfBottom && toPoint.y < shelfTop)) {
+
+                return true;
+
+            }
+
+            return false;
+
+        }
+
+        
+
+        function getNearestPassageX(x) {
+
+            return passageXs.reduce((prev, curr) => 
+
+                Math.abs(curr - x) < Math.abs(prev - x) ? curr : prev
+
+            );
+
+        }
+
+        
+
+        function getNearestPassageY(y) {
+
+            return passageYs.reduce((prev, curr) => 
+
+                Math.abs(curr - y) < Math.abs(prev - y) ? curr : prev
+
+            );
+
+        }
+
+        
+
+        function navigateToFirstProduct(productId) {
+
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+
+                createTargetPosition(product.position.x, product.position.y);
+
+                
+
+                const nearestPassageX = getNearestPassageX(product.position.x);
+
+                const nearestPassageY = getNearestPassageY(product.position.y);
+
+                
+
+                // נתיב זיגזג מהכניסה למעבר הקרוב, עוקף את כל הבלוקים והצירים החסומים בציר Y
+
+                const points = [
+
+                    { x: entrancePosition.x, y: entrancePosition.y },
+
+                    { x: nearestPassageX, y: entrancePosition.y }, // מעבר אופקי דרך passageXs (25, 525)
+
+                    { x: nearestPassageX, y: 70 }, // עלייה למעבר עליון דרך passageYs (y=70)
+
+                    { x: nearestPassageX, y: nearestPassageY }, // ירידה למעבר Y של היעד (70, 170, 270)
+
+                    { x: product.position.x, y: nearestPassageY }, // חזרה אופקית למיקום המוצר דרך passageXs
+
+                    { x: product.position.x, y: product.position.y } // יעד סופי
+
+                ];
+
+                
+
+                createComplexPath(points, 1);
+
+                
+
+                document.getElementById('current-product').textContent = product.name;
+
+                document.getElementById('info-panel').style.display = 'block';
+
+                
+
+                setTimeout(() => {
+
+                    updateUserPosition(product.position.x, product.position.y);
+
+                    markItemAsFound(productId);
+
+                    updateProgressBar();
+
+                }, 1000);
+
+            }
+
+        }
+
+        
+
+        function createPathBetweenProducts(fromProduct, toProduct) {
+
+            const startPoint = { x: fromProduct.position.x, y: fromProduct.position.y };
+
+            const endPoint = { x: toProduct.position.x, y: toProduct.position.y };
+
+            
+
+            const fromShelf = shelves.find(s => s.id === fromProduct.shelf);
+
+            const toShelf = shelves.find(s => s.id === toProduct.shelf);
+
+            
+
+            const nearestPassageXFrom = getNearestPassageX(fromProduct.position.x);
+
+            const nearestPassageYFrom = getNearestPassageY(fromProduct.position.y);
+
+            const nearestPassageXTo = getNearestPassageX(toProduct.position.x);
+
+            const nearestPassageYTo = getNearestPassageY(toProduct.position.y);
+
+            
+
+            const points = [];
+
+            
+
+            if (fromShelf.id === toShelf.id) {
+
+                // אם שני המוצרים באותו מדף, עקיפה אנכית דרך מעבר Y מעל הבלוקים
+
+                points.push(startPoint);
+
+                points.push({ x: startPoint.x, y: nearestPassageYFrom }); // עקיפה דרך passageYs (70, 170, 270)
+
+                points.push({ x: endPoint.x, y: nearestPassageYFrom });
+
+                points.push({ x: endPoint.x, y: endPoint.y });
+
+            } else {
+
+                // נתיב זיגזג לעקיפת כל הבלוקים והצירים החסומים בציר Y
+
+                points.push(startPoint);
+
+                points.push({ x: startPoint.x, y: nearestPassageYFrom }); // עקיפה דרך passageYs
+
+                points.push({ x: nearestPassageXFrom, y: nearestPassageYFrom }); // מעבר למעבר X דרך passageXs (25, 525)
+
+                points.push({ x: nearestPassageXFrom, y: 70 }); // עלייה למעבר עליון דרך passageYs (y=70)
+
+                points.push({ x: nearestPassageXTo, y: 70 }); // מעבר למעבר X הבא דרך passageXs
+
+                points.push({ x: nearestPassageXTo, y: nearestPassageYTo }); // ירידה דרך passageYs (70, 170, 270)
+
+                points.push({ x: endPoint.x, y: nearestPassageYTo }); // חזרה אופקית ליעד דרך passageXs
+
+                points.push({ x: endPoint.x, y: endPoint.y }); // יעד סופי
+
+            }
+
+            
+
+            createComplexPath(points, currentNavigationIndex + 1);
+
+        }
+
+        
+
+        function navigateToProduct(fromProductId, toProductId) {
+
+            const fromProduct = products.find(p => p.id === fromProductId);
+
+            const toProduct = products.find(p => p.id === toProductId);
+
+            
+
+            if (fromProduct && toProduct) {
+
+                createTargetPosition(toProduct.position.x, toProduct.position.y);
+
+                createPathBetweenProducts(fromProduct, toProduct);
+
+                
+
+                document.getElementById('current-product').textContent = toProduct.name;
+
+                
+
+                setTimeout(() => {
+
+                    updateUserPosition(toProduct.position.x, toProduct.position.y);
+
+                    markItemAsFound(toProductId);
+
+                    updateProgressBar();
+
+                }, 1000);
+
+            }
+
+        }
+
+        
+
+        function updateProgressBar() {
+
+            if (shoppingList.length === 0) return;
+
+            const progress = ((currentNavigationIndex + 1) / shoppingList.length) * 100;
+
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+
+        }
+
+        
+
+        function navigateToCheckout() {
+
+            const lastProduct = products.find(p => p.id === shoppingList[shoppingList.length - 1].id);
+
+            if (lastProduct) {
+
+                const leastBusyCheckout = checkouts.reduce((prev, curr) => 
+
+                    prev.load < curr.load ? prev : curr
+
+                );
+
+                const checkoutPoint = { x: leastBusyCheckout.x + 40, y: leastBusyCheckout.y + 25 };
+
+                
+
+                createTargetPosition(checkoutPoint.x, checkoutPoint.y);
+
+                
+
+                const nearestPassageXLast = getNearestPassageX(lastProduct.position.x);
+
+                const nearestPassageYLast = getNearestPassageY(lastProduct.position.y);
+
+                const nearestPassageXCheckout = getNearestPassageX(checkoutPoint.x);
+
+                
+
+                const points = [
+
+                    { x: lastProduct.position.x, y: lastProduct.position.y },
+
+                    { x: lastProduct.position.x, y: nearestPassageYLast }, // עקיפה דרך passageYs
+
+                    { x: nearestPassageXLast, y: nearestPassageYLast }, // מעבר למעבר X דרך passageXs
+
+                    { x: nearestPassageXLast, y: 70 }, // עלייה למעבר עליון דרך passageYs (y=70)
+
+                    { x: nearestPassageXCheckout, y: 70 }, // מעבר למעבר X של הקופה דרך passageXs
+
+                    { x: nearestPassageXCheckout, y: checkoutPoint.y }, // ירידה לקופה דרך passageYs
+
+                    checkoutPoint
+
+                ];
+
+                
+
+                createComplexPath(points, shoppingList.length + 1);
+
+                
+
+                document.getElementById('current-product').textContent = `תשלום ב${leastBusyCheckout.name}`;
+
+                
+
+                setTimeout(() => {
+
+                    updateUserPosition(checkoutPoint.x, checkoutPoint.y);
+
+                    document.getElementById('info-panel').style.display = 'none';
+
+                    document.getElementById('progress-container').style.display = 'none';
+
+                    document.getElementById('promos-on-path').style.display = 'none';
+
+                    navigationActive = false;
+
+                }, 1000);
+
+            }
+
+        }
+
+        
+
+        function checkPromotionsOnPath(pathPoints) {
+
+            const mapContainer = document.getElementById('store-map');
+
+            const promoElements = mapContainer.getElementsByClassName('promotion');
+
+            Array.from(promoElements).forEach(promo => promo.style.display = 'none');
+
+            
+
+            promotionsOnPath = [];
+
+            
+
+            promotions.forEach(promo => {
+
+                if (shoppingList.some(item => item.id === promo.productId)) return;
+
+                
+
+                for (let i = 0; i < pathPoints.length - 1; i++) {
+
+                    const fromPoint = pathPoints[i];
+
+                    const toPoint = pathPoints[i + 1];
+
+                    const distance = pointToLineDistance(promo.position, fromPoint, toPoint);
+
+                    if (distance < 20) {
+
+                        promotionsOnPath.push(promo);
+
+                        const promoElement = Array.from(promoElements).find(el => 
+
+                            parseInt(el.style.left) === promo.position.x && 
+
+                            parseInt(el.style.top) === promo.position.y
+
+                        );
+
+                        if (promoElement) promoElement.style.display = 'block';
+
+                        break;
+
+                    }
+
+                }
+
+            });
+
+            
+
+            renderPromotionsOnPath();
+
+        }
+
+        
+
+        function pointToLineDistance(point, lineStart, lineEnd) {
+
+            const A = point.x - lineStart.x;
+
+            const B = point.y - lineStart.y;
+
+            const C = lineEnd.x - lineStart.x;
+
+            const D = lineEnd.y - lineStart.y;
+
+            const dot = A * C + B * D;
+
+            const lenSq = C * C + D * D;
+
+            let param = -1;
+
+            
+
+            if (lenSq !== 0) param = dot / lenSq;
+
+            
+
+            let xx, yy;
+
+            if (param < 0) {
+
+                xx = lineStart.x;
+
+                yy = lineStart.y;
+
+            } else if (param > 1) {
+
+                xx = lineEnd.x;
+
+                yy = lineEnd.y;
+
+            } else {
+
+                xx = lineStart.x + param * C;
+
+                yy = lineStart.y + param * D;
+
+            }
+
+            
+
+            const dx = point.x - xx;
+
+            const dy = point.y - yy;
+
+            return Math.sqrt(dx * dx + dy * dy);
+
+        }
+
+        
+
+        function renderPromotionsOnPath() {
+
+            const promoContainer = document.getElementById('promos-on-path');
+
+            const promoList = document.getElementById('promo-list');
+
+            promoList.innerHTML = '';
+
+            
+
+            if (promotionsOnPath.length === 0) {
+
+                promoContainer.style.display = 'none';
+
+                return;
+
+            }
+
+            
+
+            promoContainer.style.display = 'block';
+
+            
+
+            promotionsOnPath.forEach(promo => {
+
+                const promoItem = document.createElement('div');
+
+                promoItem.className = 'promo-item';
+
+                
+
+                const promoIcon = document.createElement('div');
+
+                promoIcon.className = 'promo-icon';
+
+                promoIcon.textContent = '%';
+
+                
+
+                const promoDetails = document.createElement('div');
+
+                promoDetails.className = 'promo-details';
+
+                promoDetails.innerHTML = `
+
+                    <div class="promo-title">${promo.title}</div>
+
+                    <div>${promo.description} - <span class="promo-price">${promo.price}</span></div>
+
+                `;
+
+                
+
+                promoItem.appendChild(promoIcon);
+
+                promoItem.appendChild(promoDetails);
+
+                
+
+                promoItem.addEventListener('click', () => {
+
+                    if (!navigationActive) {
+
+                        const product = products.find(p => p.id === promo.productId);
+
+                        if (product) addProductToList(product);
+
+                    }
+
+                });
+
+                
+
+                promoList.appendChild(promoItem);
+
+            });
+
+        }
+
+        
+
+        function addProductToList(product) {
+
+            if (!shoppingList.some(item => item.id === product.id)) {
+
+                shoppingList.push(product);
+
+                renderShoppingList();
+
+                updateListCount();
+
+            }
+
+        }
+
+        
+
+        function updateListCount() {
+
+            document.getElementById('list-count').textContent = shoppingList.length;
+
+        }
+
+        
+
+        function removeProductFromList(productId) {
+
+            shoppingList = shoppingList.filter(item => item.id !== productId);
+
+            renderShoppingList();
+
+            updateListCount();
+
+        }
+
+        
+
+        function markItemAsFound(productId) {
+
+            const listItem = document.querySelector(`.list-item[data-id="${productId}"]`);
+
+            if (listItem) listItem.classList.add('found');
+
+        }
+
+        
+
+        function clearShoppingList() {
+
+            if (navigationActive) {
+
+                alert("לא ניתן לנקות את הרשימה במהלך ניווט פעיל.");
+
+                return;
+
+            }
+
+            
+
+            shoppingList = [];
+
+            renderShoppingList();
+
+            updateListCount();
+
+            document.getElementById('info-panel').style.display = 'none';
+
+            document.getElementById('progress-container').style.display = 'none';
+
+            document.getElementById('promos-on-path').style.display = 'none';
+
+            currentPaths.forEach(path => {
+
+                if (path && path.parentNode) path.parentNode.removeChild(path);
+
+            });
+
+            currentPaths = [];
+
+            clearAllPaths();
+
+            fullPathPoints = [];
+
+            document.getElementById('full-path-container').innerHTML = '';
+
+            updateUserPosition(entrancePosition.x, entrancePosition.y);
+
+        }
+
+        
+
+        function renderShoppingList() {
+
+            const listElement = document.getElementById('shopping-list');
+
+            listElement.innerHTML = '';
+
+            
+
+            if (shoppingList.length === 0) {
+
+                const emptyMessage = document.createElement('li');
+
+                emptyMessage.textContent = 'רשימת הקניות ריקה';
+
+                listElement.appendChild(emptyMessage);
+
+                return;
+
+            }
+
+            
+
+            shoppingList.forEach((product, index) => {
+
+                const listItem = document.createElement('li');
+
+                listItem.className = 'list-item';
+
+                listItem.dataset.id = product.id;
+
+                
+
+                const productInfo = document.createElement('div');
+
+                productInfo.className = 'product-info';
+
+                
+
+                const productName = document.createElement('span');
+
+                productName.textContent = product.name;
+
+                
+
+                const productCategory = document.createElement('span');
+
+                productCategory.className = 'product-category';
+
+                productCategory.textContent = product.category;
+
+                
+
+                productInfo.appendChild(productName);
+
+                productInfo.appendChild(productCategory);
+
+                
+
+                const buttonsContainer = document.createElement('div');
+
+                
+
+                if (!navigationActive) {
+
+                    const navigateButton = document.createElement('button');
+
+                    navigateButton.textContent = 'נווט';
+
+                    navigateButton.addEventListener('click', () => {
+
+                        if (userPosition.x === entrancePosition.x && userPosition.y === entrancePosition.y) {
+
+                            navigateToFirstProduct(product.id);
+
+                        } else {
+
+                            const foundItem = shoppingList.find(item => {
+
+                                const listItem = document.querySelector(`.list-item[data-id="${item.id}"]`);
+
+                                return listItem && listItem.classList.contains('found');
+
+                            });
+
+                            if (foundItem) {
+
+                                navigateToProduct(foundItem.id, product.id);
+
+                            } else {
+
+                                navigateToFirstProduct(product.id);
+
+                            }
+
+                        }
+
+                    });
+
+                    
+
+                    const removeButton = document.createElement('button');
+
+                    removeButton.textContent = 'הסר';
+
+                    removeButton.className = 'remove-btn';
+
+                    removeButton.addEventListener('click', () => removeProductFromList(product.id));
+
+                    
+
+                    buttonsContainer.appendChild(navigateButton);
+
+                    buttonsContainer.appendChild(removeButton);
+
+                }
+
+                
+
+                listItem.appendChild(productInfo);
+
+                listItem.appendChild(buttonsContainer);
+
+                
+
+                listElement.appendChild(listItem);
+
+            });
+
+        }
+
+        
+
+        function searchProducts(query) {
+
+            query = query.trim().toLowerCase();
+
+            if (query === '') return [];
+
+            
+
+            return products.filter(product => 
+
+                product.name.toLowerCase().includes(query) || 
+
+                product.category.toLowerCase().includes(query)
+
+            );
+
+        }
+
+        
+
+        function renderSearchResults(results) {
+
+            const resultsElement = document.getElementById('product-results');
+
+            resultsElement.innerHTML = '';
+
+            
+
+            if (results.length === 0) {
+
+                const noResults = document.createElement('div');
+
+                noResults.textContent = 'לא נמצאו תוצאות';
+
+                resultsElement.appendChild(noResults);
+
+                return;
+
+            }
+
+            
+
+            results.forEach(product => {
+
+                const productItem = document.createElement('div');
+
+                productItem.className = 'product-item';
+
+                productItem.innerHTML = `<b>${product.name}</b> <small>(${product.category})</small>`;
+
+                productItem.addEventListener('click', () => {
+
+                    if (!navigationActive) {
+
+                        addProductToList(product);
+
+                        document.getElementById('search-input').value = '';
+
+                        resultsElement.innerHTML = '';
+
+                    } else {
+
+                        alert("לא ניתן להוסיף מוצרים במהלך ניווט פעיל.");
+
+                    }
+
+                });
+
+                resultsElement.appendChild(productItem);
+
+            });
+
+        }
+
+        
+
+        function startNavigation() {
+
+            if (shoppingList.length === 0) {
+
+                alert('רשימת הקניות ריקה');
+
+                return;
+
+            }
+
+            
+
+            if (navigationActive) {
+
+                alert('ניווט כבר פעיל');
+
+                return;
+
+            }
+
+            
+
+            updateUserPosition(entrancePosition.x, entrancePosition.y);
+
+            currentPaths.forEach(path => {
+
+                if (path && path.parentNode) path.parentNode.removeChild(path);
+
+            });
+
+            currentPaths = [];
+
+            clearAllPaths();
+
+            fullPathPoints = [];
+
+            document.getElementById('full-path-container').innerHTML = '';
+
+            document.querySelectorAll('.list-item').forEach(item => item.classList.remove('found'));
+
+            
+
+            currentNavigationIndex = 0;
+
+            navigationActive = true;
+
+            
+
+            document.getElementById('progress-container').style.display = 'block';
+
+            document.getElementById('progress-bar').style.width = '0%';
+
+            
+
+            renderShoppingList();
+
+            navigateToFirstProduct(shoppingList[0].id);
+
+        }
+
+        
+
+        function navigateToNextItem() {
+
+            if (currentNavigationIndex >= shoppingList.length - 1) {
+
+                navigateToCheckout();
+
+                return;
+
+            }
+
+            
+
+            currentNavigationIndex++;
+
+            navigateToProduct(shoppingList[currentNavigationIndex - 1].id, shoppingList[currentNavigationIndex].id);
+
+        }
+
+        
+
+        function addNewItemToList() {
+
+            if (navigationActive) {
+
+                alert("לא ניתן להוסיף מוצרים במהלך ניווט פעיל.");
+
+                return;
+
+            }
+
+            
+
+            const productName = prompt('הכנס את שם המוצר:');
+
+            if (!productName || productName.trim() === '') return;
+
+            
+
+            const searchResults = searchProducts(productName);
+
+            if (searchResults.length > 0) {
+
+                renderSearchResults(searchResults);
+
+            } else {
+
+                alert('מוצר זה לא נמצא בחנות');
+
+            }
+
+        }
+
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            initializeMap();
+
+            renderShoppingList();
+
+            updateListCount();
+
+            
+
+            document.getElementById('search-btn').addEventListener('click', () => {
+
+                const query = document.getElementById('search-input').value;
+
+                const results = searchProducts(query);
+
+                renderSearchResults(results);
+
+            });
+
+            
+
+            document.getElementById('search-input').addEventListener('keyup', (event) => {
+
+                if (event.key === 'Enter') {
+
+                    const query = document.getElementById('search-input').value;
+
+                    const results = searchProducts(query);
+
+                    renderSearchResults(results);
+
+                }
+
+            });
+
+            
+
+            document.getElementById('start-navigation').addEventListener('click', startNavigation);
+
+            document.getElementById('add-item-btn').addEventListener('click', addNewItemToList);
+
+            document.getElementById('clear-list').addEventListener('click', clearShoppingList);
+
+            
+
+            document.getElementById('user-position').addEventListener('transitionend', (e) => {
+
+                if ((e.propertyName === 'left' || e.propertyName === 'top') && navigationActive) {
+
+                    setTimeout(() => {
+
+                        navigateToNextItem();
+
+                    }, 500);
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
